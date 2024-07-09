@@ -1,0 +1,24 @@
+vim.g.mapleader = " "
+
+vim.keymap.set("n", "<leader>kv", vim.cmd.Ex)
+
+vim.keymap.set("n", "<leader>w", vim.cmd.w)
+
+vim.keymap.set("n", "<C-h>", function() vim.cmd("winc h") end)
+vim.keymap.set("n", "<C-j>", function() vim.cmd("winc j") end)
+vim.keymap.set("n", "<C-k>", function() vim.cmd("winc k") end)
+vim.keymap.set("n", "<C-l>", function() vim.cmd("winc l") end)
+
+vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeToggle)
+vim.keymap.set("n", "<leader>h", vim.cmd.noh)
+
+vim.keymap.set("n", "<leader>gg", "<Cmd>LazyGit<CR>")
+
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+vim.keymap.set("n", "y", "\"+y")
+vim.keymap.set("v", "y", "\"+y")
+vim.keymap.set("n", "Y", "\"+Y")
+
+vim.keymap.set("x", "p", "\"_dP")
+
