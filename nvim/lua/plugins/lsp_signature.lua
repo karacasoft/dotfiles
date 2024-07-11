@@ -3,5 +3,5 @@ return {
   config = function()
     local cfg = {}
     require("lsp_signature").setup(cfg)
-  end,
+  end
 }

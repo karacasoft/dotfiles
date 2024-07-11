@@ -1,4 +1,5 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
+
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -31,7 +32,7 @@ return require('packer').startup(function(use)
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
-    requirements = {
+    requires = {
       --- Uncomment these if you want to manage LSP servers from neovim
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
@@ -94,16 +95,9 @@ return require('packer').startup(function(use)
   }
   use 'nacro90/numb.nvim'
 
-  use {
-    'Exafunction/codeium.vim',
-    config = function()
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
-      vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end,
-        { expr = true, silent = true })
-      vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
-        { expr = true, silent = true })
-      vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
-    end
-  }
+  use { 'mhartington/formatter.nvim' }
+
+
+  --- Tabby plugin
+  use { 'TabbyML/vim-tabby' }
 end)

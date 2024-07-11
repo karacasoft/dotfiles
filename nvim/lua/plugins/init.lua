@@ -1,26 +1,30 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.4',
-    -- or                            , branch = '0.1.x',
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    version = '0.1.4',
+    dependencies = { { 'nvim-lua/plenary.nvim' } }
   },
 
   {
     'rose-pine/neovim',
-    as = 'rose-pine',
-    config = function()
-      vim.cmd('colorscheme rose-pine')
-    end
+    name = 'rose-pine',
   },
 
   {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
+    build = ':TSUpdate'
   },
 
-  'nvim-tree/nvim-tree.lua',
-  'nvim-tree/nvim-web-devicons',
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    }
+  },
 
   'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
   'romgrk/barbar.nvim',
@@ -28,45 +32,41 @@ return {
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
-    requirements = {
+    dependencies = {
       --- Uncomment these if you want to manage LSP servers from neovim
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
+
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'L3MON4D3/LuaSnip' },
     }
   },
-  { 'williamboman/mason.nvim' },
-  { 'williamboman/mason-lspconfig.nvim' },
-
-  -- LSP Support
-  { 'neovim/nvim-lspconfig' },
-  -- Autocompletion
-  { 'hrsh7th/nvim-cmp' },
-  { 'hrsh7th/cmp-nvim-lsp' },
-  { 'L3MON4D3/LuaSnip' },
 
   {
     "kdheepak/lazygit.nvim",
     -- optional for floating window border decoration
-    requires = {
+    dependencies = {
       "nvim-lua/plenary.nvim",
     },
   },
 
   'mbbill/undotree',
 
-  {
-    "ray-x/lsp_signature.nvim",
-  },
+  "ray-x/lsp_signature.nvim",
 
   {
     'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true }
   },
   "lukas-reineke/indent-blankline.nvim",
 
   'windwp/nvim-ts-autotag',
 
-  {
-    'numToStr/Comment.nvim',
-  },
+  'numToStr/Comment.nvim',
 
   'tpope/vim-surround',
   'tpope/vim-repeat',
@@ -75,8 +75,6 @@ return {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   },
-
-  { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' },
 
   "ellisonleao/gruvbox.nvim",
   'AlexvZyl/nordic.nvim',
@@ -88,33 +86,54 @@ return {
   {
     'folke/todo-comments.nvim',
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {}
   },
   'nacro90/numb.nvim',
 
+  'mhartington/formatter.nvim',
+
   {
-    'nvimdev/dashboard-nvim',
-    event = 'VimEnter',
+    'rcarriga/nvim-notify',
     config = function()
-      require('dashboard').setup {
-        -- config
-      }
-    end,
-    dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+      vim.notify = require('notify')
+    end
   },
 
-  "tpope/vim-obsession",
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
 
   {
-    'Exafunction/codeium.vim',
+    "GCBallesteros/NotebookNavigator.nvim",
+    keys = {
+      { "<leader>nd",        function() require("notebook-navigator").move_cell "d" end },
+      { "<leader>nu",        function() require("notebook-navigator").move_cell "u" end },
+      { "<leader>X", "<cmd>lua require('notebook-navigator').run_cell()<cr>" },
+      { "<leader>x", "<cmd>lua require('notebook-navigator').run_and_move()<cr>" },
+    },
+    dependencies = {
+      "echasnovski/mini.comment",
+      "hkupty/iron.nvim", -- repl provider
+      -- "akinsho/toggleterm.nvim", -- alternative repl provider
+      -- "benlubas/molten-nvim", -- alternative repl provider
+      "anuvyklack/hydra.nvim",
+    },
+    event = "VeryLazy",
     config = function()
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
-      vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end,
-        { expr = true, silent = true })
-      vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
-        { expr = true, silent = true })
-      vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
-    end
-  }
+      local nn = require "notebook-navigator"
+      nn.setup({ activate_hydra_keys = "<leader>h" })
+    end,
+  },
+
+  --- Tabby plugin
+  'TabbyML/vim-tabby',
 }

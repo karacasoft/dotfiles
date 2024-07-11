@@ -25,3 +25,8 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.colorcolumn = "80"
 
+vim.cmd("colorscheme kanagawa")
+vim.cmd("hi! Normal guibg=NONE ctermbg=NONE")
+vim.cmd("hi! NonText guibg=NONE ctermbg=NONE")
+vim.cmd("hi! NormalFloat guibg=NONE ctermbg=NONE")
+

@@ -29,7 +29,7 @@
       export TMUX_POWERLINE_STATUS_JUSTIFICATION="left"
 
       # The maximum length of the left status bar.
-      export TMUX_POWERLINE_STATUS_LEFT_LENGTH="10"
+      export TMUX_POWERLINE_STATUS_LEFT_LENGTH="70"
       # The maximum length of the right status bar.
       export TMUX_POWERLINE_STATUS_RIGHT_LENGTH="90"
 
@@ -215,15 +215,15 @@
 	# File to be read in case the song is being read from a file
 	export TMUX_POWERLINE_SEG_NOW_PLAYING_FILE_NAME=""
 	# Maximum output length.
-	export TMUX_POWERLINE_SEG_NOW_PLAYING_MAX_LEN="40"
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_MAX_LEN="30"
 	# How to handle too long strings. Can be {trim, roll}.
-	export TMUX_POWERLINE_SEG_NOW_PLAYING_TRIM_METHOD="trim"
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_TRIM_METHOD="roll"
 	# Characters per second to roll if rolling trim method is used.
 	export TMUX_POWERLINE_SEG_NOW_PLAYING_ROLL_SPEED="2"
 	# Mode of roll text {"space", "repeat"}. space: fill up with empty space; repeat: repeat text from beginning
-	# export TMUX_POWERLINE_SEG_NOW_PLAYING_ROLL_MODE="repeat"
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_ROLL_MODE="repeat"
 	# Separator for "repeat" roll mode
-	# export TMUX_POWERLINE_SEG_NOW_PLAYING_ROLL_SEPARATOR="   "
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_ROLL_SEPARATOR="     "
 	# If set to 'true', 'yes', 'on' or '1', played tracks will be logged to a file.
 	# export TMUX_POWERLINE_SEG_NOW_PLAYING_TRACK_LOG_ENABLE="false"
 	# If enabled, log played tracks to the following file:
@@ -277,7 +277,7 @@
 
 # time.sh {
 	# date(1) format for the time. Americans might want to have "%I:%M %p".
-	export TMUX_POWERLINE_SEG_TIME_FORMAT="%H:%M"
+	export TMUX_POWERLINE_SEG_TIME_FORMAT="%H:%M:%S"
 	# Change this to display a different timezone than the system default.
 	# Use TZ Identifier like "America/Los_Angeles"
 	# export TMUX_POWERLINE_SEG_TIME_TZ=""
@@ -355,20 +355,20 @@
 
 # vpn.sh {
 	# Mode for VPN segment {"both", "ip", "name"}. both: Show NIC/IP; ip: Show only IP; name: Show only NIC name
-	# export TMUX_POWERLINE_SEG_VPN_DISPLAY_MODE="both"
+	export TMUX_POWERLINE_SEG_VPN_DISPLAY_MODE="both"
 	# Space separated list of tunnel interface names. First match is being used. substring match, regexp can be used.
 	# Examples:
 	# export TMUX_POWERLINE_SEG_VPN_NICS="tun" # will match 'tun0', 'utun0', 'itun', 'tun08127387'
 	# export TMUX_POWERLINE_SEG_VPN_NICS="tun0 tuntun" # will match 'tun0', 'utun0', 'tuntun'
 	# export TMUX_POWERLINE_SEG_VPN_NICS="^tun0$ ^tun1$" # exactly 'tun0' and 'tun1'
 	# Default:
-	# export TMUX_POWERLINE_SEG_VPN_NICS='^u?tun[0-9]+$'
+	export TMUX_POWERLINE_SEG_VPN_NICS='^u?tun[0-9]+$'
 	# Symbol to use for vpn tunnel.
-	# export TMUX_POWERLINE_SEG_VPN_SYMBOL="󱠾 "
+	export TMUX_POWERLINE_SEG_VPN_SYMBOL="󱠾 "
 	# Colour for vpn tunnel symbol
-	# export TMUX_POWERLINE_SEG_VPN_SYMBOL_COLOUR="255"
+	export TMUX_POWERLINE_SEG_VPN_SYMBOL_COLOUR="255"
 	# Symbol for separator
-	# export TMUX_POWERLINE_SEG_VPN_DISPLAY_SEPARATOR="󰿟"
+	export TMUX_POWERLINE_SEG_VPN_DISPLAY_SEPARATOR="󰿟"
 # }
 
 # wan_ip.sh {
