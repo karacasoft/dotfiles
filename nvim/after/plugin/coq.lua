@@ -1,9 +1,0 @@
--- vim.g.coq_settings = {
---   keymap = {
---     pre_select = false,
---     jump_to_mark = nil,
---     
---   }
--- }
---
--- vim.cmd.COQnow()

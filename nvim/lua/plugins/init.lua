@@ -15,16 +15,9 @@ return {
     build = ':TSUpdate'
   },
 
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-    }
-  },
+  'nvim-tree/nvim-tree.lua',
+  'nvim-tree/nvim-web-devicons',
+
 
   'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
   'romgrk/barbar.nvim',
@@ -115,10 +108,10 @@ return {
   {
     "GCBallesteros/NotebookNavigator.nvim",
     keys = {
-      { "<leader>nd",        function() require("notebook-navigator").move_cell "d" end },
-      { "<leader>nu",        function() require("notebook-navigator").move_cell "u" end },
-      { "<leader>X", "<cmd>lua require('notebook-navigator').run_cell()<cr>" },
-      { "<leader>x", "<cmd>lua require('notebook-navigator').run_and_move()<cr>" },
+      { "<leader>nd", function() require("notebook-navigator").move_cell "d" end },
+      { "<leader>nu", function() require("notebook-navigator").move_cell "u" end },
+      { "<leader>X",  "<cmd>lua require('notebook-navigator').run_cell()<cr>" },
+      { "<leader>x",  "<cmd>lua require('notebook-navigator').run_and_move()<cr>" },
     },
     dependencies = {
       "echasnovski/mini.comment",
@@ -134,6 +127,50 @@ return {
     end,
   },
 
-  --- Tabby plugin
-  'TabbyML/vim-tabby',
+  "LunarVim/bigfile.nvim",
+  {
+    "hedyhli/outline.nvim",
+    config = function()
+      -- Example mapping to toggle outline
+      vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>",
+        { desc = "Toggle Outline" })
+
+      require("outline").setup {
+        symbol_folding = {
+          autofold_depth = 1,
+          auto_unfold = {
+            hovered = true,
+          },
+        },
+        outline_window = {
+          auto_jump = true,
+          width = 15,
+        },
+      }
+    end,
+  },
+
+  {
+    'dnlhc/glance.nvim',
+    config = function()
+      local glance = require('glance')
+      glance.setup({
+        border = {
+          enable = true,
+        },
+      })
+    end,
+  },
+  {
+    "David-Kunz/gen.nvim",
+    opts = {
+      model = "llama3",
+    },
+  },
+  {
+    "chrisgrieser/nvim-early-retirement",
+    config = true,
+    event = "VeryLazy",
+  },
+
 }
