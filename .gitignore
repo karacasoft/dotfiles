@@ -1,0 +1,10 @@
+/*
+
+!/.gitignore
+
+!/.config
+/.config/*
+!/.config/nvim/
+!/.config/tmux-powerline/
+
+!/.tmux.conf
