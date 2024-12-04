@@ -101,7 +101,7 @@ require("lazy").setup({
     cmd = "Trouble",
     keys = {
       {
-        "<leader>xx",
+        "<leader>gx",
         "<Cmd>Trouble diagnostics toggle<CR>",
         desc = "Diagnostics",
       }
