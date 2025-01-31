@@ -19,4 +19,6 @@ vim.keymap.set("n", "y", "\"+y", {
 vim.keymap.set("v", "y", "\"+y", {
     desc = "Copy to clipboard"
 })
-
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", {
+    desc = "Exit from terminal"
+})

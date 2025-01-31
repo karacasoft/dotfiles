@@ -295,9 +295,6 @@ require("lazy").setup({
   },
     {
       "folke/tokyonight.nvim",
-      config = function()
-        vim.cmd([[colorscheme tokyonight]])
-      end,
     },
     {
       "anuvyklack/hydra.nvim",
@@ -372,7 +369,19 @@ require("lazy").setup({
         { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
       }
     },
-
+    {
+      "mbbill/undotree",
+      keys = {
+        { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree" }
+      }
+    },
+    { "ellisonleao/gruvbox.nvim", priority = 1000,  config = true },
+    {
+      "nyoom-engineering/oxocarbon.nvim",
+      config = function()
+        vim.cmd([[colorscheme oxocarbon]])
+      end
+    },
   },
   checker = {
     enabled = true,

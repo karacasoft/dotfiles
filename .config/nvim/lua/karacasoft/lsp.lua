@@ -19,20 +19,12 @@ lspconfig.lua_ls.setup({
   }
 })
 
-lspconfig.pylsp.setup({
+lspconfig.rust_analyzer.setup({
   on_attach = on_attach,
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          ignore = { "E501", },
-        },
-        rope_autoimport = {
-          enabled = true,
-        },
-      }
-    }
-  }
+})
+
+lspconfig.pyright.setup({
+  on_attach = on_attach,
 })
 
 lspconfig.ts_ls.setup({
