@@ -156,7 +156,6 @@ require("lazy").setup({
       symbol_in_winbar = {
         enable = true
       },
-
     },
     init = function()
       vim.keymap.set("n", "<leader>o", "<Cmd>Lspsaga outline<CR>", {
@@ -275,7 +274,11 @@ require("lazy").setup({
       "folke/tokyonight.nvim",
     },
     {
-      "anuvyklack/hydra.nvim",
+      "nvimtools/hydra.nvim",
+      event = "VeryLazy",
+      config = function()
+        require("karacasoft.plugins.githydra")
+      end
     },
     {
       "lewis6991/gitsigns.nvim",
@@ -305,6 +308,7 @@ require("lazy").setup({
 
         iron.setup({
           config = {
+            command = "ipython --no-autoindent",
             repl_open_cmd = "belowright 8 split",
           }
         })
@@ -319,7 +323,7 @@ require("lazy").setup({
       dependencies = {
         "echasnovski/mini.comment",
         "hkupty/iron.nvim",
-        "anuvyklack/hydra.nvim",
+        "nvimtools/hydra.nvim",
       },
       event = "VeryLazy",
       config = function()
@@ -357,7 +361,7 @@ require("lazy").setup({
     {
       "nyoom-engineering/oxocarbon.nvim",
       config = function()
-        vim.cmd([[colorscheme oxocarbon]])
+        -- vim.cmd([[colorscheme oxocarbon]])
       end
     },
     {
@@ -367,13 +371,23 @@ require("lazy").setup({
       opts = {
         -- add any opts here
         -- for example
-        provider = "claude",
-        claude = {
-          endpoint = "https://api.anthropic.com",
-          model = "claude-3-5-sonnet-20241022",
-          timeout = 30000, -- Timeout in milliseconds
-          temperature = 0,
-          max_tokens = 4096,
+        -- provider = "claude",
+        -- claude = {
+        --   endpoint = "https://api.anthropic.com",
+        --   model = "claude-3-5-sonnet-20241022",
+        --   timeout = 30000, -- Timeout in milliseconds
+        --   temperature = 0,
+        --   max_tokens = 4096,
+        -- }
+        provider = "ollama",
+        ollama = {
+          endpoint = "http://localhost:11434",
+          model = "devstral",
+
+          options = {
+            temperature = 0,
+            num_ctx = 8192
+          }
         }
       },
       -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -415,7 +429,8 @@ require("lazy").setup({
           ft = { "markdown", "Avante" },
         },
       },
-    }
+    },
+    { 'AlphaTechnolog/pywal.nvim', config = true }
   },
   checker = {
     enabled = true,
