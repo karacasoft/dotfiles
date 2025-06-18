@@ -17,7 +17,9 @@ Hydra({
       color = 'red',
       invoke_on_body = true,
       hint = {
-         border = 'rounded'
+        float_opts = {
+          style = 'rounded',
+        },
       },
       on_key = function() vim.wait(50) end,
       on_enter = function()

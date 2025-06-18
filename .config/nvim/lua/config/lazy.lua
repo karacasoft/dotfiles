@@ -380,13 +380,16 @@ require("lazy").setup({
         --   max_tokens = 4096,
         -- }
         provider = "ollama",
-        ollama = {
-          endpoint = "http://localhost:11434",
-          model = "devstral",
-
-          options = {
-            temperature = 0,
-            num_ctx = 8192
+        providers = {
+          ollama = {
+            endpoint = "http://localhost:11434",
+            model = "qwen3:1.7b",
+            extra_request_body = {
+              options = {
+                temperature = 0.3,
+                num_ctx = 32768
+              }
+            }
           }
         }
       },

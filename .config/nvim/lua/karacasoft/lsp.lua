@@ -8,7 +8,7 @@ local on_attach = function(_, bufnr)
 end
 
 
-lspconfig.lua_ls.setup({
+vim.lsp.config('lua_ls', {
   on_attach = on_attach,
   settings = {
     Lua = {
@@ -19,18 +19,26 @@ lspconfig.lua_ls.setup({
   }
 })
 
-lspconfig.vala_ls.setup({
+vim.lsp.config('clangd', {
+  on_attach = on_attach
+})
+
+vim.lsp.config('cpptools', {
   on_attach = on_attach,
 })
 
-lspconfig.rust_analyzer.setup({
+vim.lsp.config('vala_ls', {
   on_attach = on_attach,
 })
 
-lspconfig.pyright.setup({
+vim.lsp.config('rust_analyzer', {
   on_attach = on_attach,
 })
 
-lspconfig.ts_ls.setup({
+vim.lsp.config('pyright', {
+  on_attach = on_attach,
+})
+
+vim.lsp.config('ts_ls', {
   on_attach = on_attach,
 })
