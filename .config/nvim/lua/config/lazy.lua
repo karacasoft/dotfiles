@@ -443,8 +443,6 @@ require("lazy").setup({
       config = true,
       enabled = function ()
         local response = is_installed("wal")
-        print("Is wal installed?")
-        print(response)
         return response
       end
     }
