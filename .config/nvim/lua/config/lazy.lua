@@ -1,3 +1,4 @@
+local io = require("io")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -11,6 +12,17 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.getchar()
     os.exit(1)
   end
+end
+
+local function is_installed(program)
+    local handle = io.popen("which " .. program .. " 2>/dev/null")
+    if handle ~= nil then
+      local result = handle:read("*a")
+      handle:close()
+      return result ~= ""
+    else
+      return false
+    end
 end
 
 local has_words_before = function()
@@ -294,13 +306,6 @@ require("lazy").setup({
       }
     },
     {
-      "NeogitOrg/neogit",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-      },
-      config = true,
-    },
-    {
       "hkupty/iron.nvim",
       config = function()
         local view = require("iron.view")
@@ -433,7 +438,16 @@ require("lazy").setup({
         },
       },
     },
-    { 'AlphaTechnolog/pywal.nvim', config = true }
+    {
+      'AlphaTechnolog/pywal.nvim',
+      config = true,
+      enabled = function ()
+        local response = is_installed("wal")
+        print("Is wal installed?")
+        print(response)
+        return response
+      end
+    }
   },
   checker = {
     enabled = true,
